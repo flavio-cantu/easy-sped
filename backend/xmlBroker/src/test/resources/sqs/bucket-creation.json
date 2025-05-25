@@ -1,0 +1,8 @@
+{
+  "Service": "Amazon S3",
+  "Event": "s3:TestEvent",
+  "Time": "2025-05-13T13:39:21.247Z",
+  "Bucket": "poc-concept-b4372ec472133e4363fc",
+  "RequestId": "7KTXJK65DNMM334H",
+  "HostId": "c/f2ZmvV3QoF1+p4pJ3hWG0CNx+Bv9XH3SqkUCyelRHFVKfiinRhLeYiFM9HDoHjNJJcS7bSWGU="
+}

@@ -1,0 +1,38 @@
+{
+  "Records": [
+    {
+      "eventVersion": "2.1",
+      "eventSource": "aws:s3",
+      "awsRegion": "us-east-1",
+      "eventTime": "2025-05-13T13:48:42.969Z",
+      "eventName": "ObjectCreated:Put",
+      "userIdentity": {
+        "principalId": "AWS:AIDAVPQQP3XBBCNJ5HSJ5"
+      },
+      "requestParameters": {
+        "sourceIPAddress": "170.233.24.88"
+      },
+      "responseElements": {
+        "x-amz-request-id": "PHWRAM9X8B1EFRW0",
+        "x-amz-id-2": "0BGK9HUJm1FXW0YxUc3R6bOVwCFY9WbKAnXOsGlc6XD7K5zyIUr8lWTLzKG6P636pE//XEsm6/1+kjhXUSfg3MOQJjeW1wjV"
+      },
+      "s3": {
+        "s3SchemaVersion": "1.0",
+        "configurationId": "tf-s3-queue-20250513133920461600000001",
+        "bucket": {
+          "name": "poc-concept-b4372ec472133e4363fc",
+          "ownerIdentity": {
+            "principalId": "A23DWQH0FEB152"
+          },
+          "arn": "arn:aws:s3:::poc-concept-b4372ec472133e4363fc"
+        },
+        "object": {
+          "key": "posto/test.xml",
+          "size": 0,
+          "eTag": "d41d8cd98f00b204e9800998ecf8427e",
+          "sequencer": "0068234DBAC264FCF0"
+        }
+      }
+    }
+  ]
+}

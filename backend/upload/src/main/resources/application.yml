@@ -1,0 +1,32 @@
+# Perfil "local" (memória)
+spring:
+  config:
+    activate:
+      on-profile: "local"
+  datasource:
+    url: jdbc:h2:mem:file_recorder;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL
+    username: uploader
+    password: "@(!*SJND"
+    driver-class-name: org.h2.Driver
+
+---
+# Perfil padrão (arquivo - como está hoje)
+spring:
+  config:
+    activate:
+      on-profile: "!local"
+  datasource:
+    url: jdbc:h2:file:./record/file_recorder;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
+    username: uploader
+    password: "@(!*SJND"
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+    open-in-view: false
