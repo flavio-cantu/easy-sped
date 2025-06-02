@@ -15,23 +15,23 @@ spec:
         app: xml-broker
     spec:
       containers:
-        - name: xml-broker
-          image: eclipse-temurin:21-jre
-          command: [ "java", "-jar", "/app/xmlBroker.jar" ]
-          resources:
-            limits:
-              memory: "1Gi"
-              cpu: "500m"
-          envFrom:
-            - configMapRef:
-                name: app-config
-            - secretRef:
-                name: db-credentials
-          volumeMounts:
-            - name: app-volume
-              mountPath: /app
-      volumes:
+      - name: xml-broker
+        image: eclipse-temurin:21-jre
+        command: ["java", "-jar", "/app/xmlBroker.jar"]
+        resources:
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        envFrom:
+        - configMapRef:
+            name: app-config
+        - secretRef:
+            name: db-credentials
+        volumeMounts:
         - name: app-volume
-          hostPath:
-            path: /app
-            type: Directory
+          mountPath: /app
+      volumes:
+      - name: app-volume
+        hostPath:
+          path: /app
+          type: Directory

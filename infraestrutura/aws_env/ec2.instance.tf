@@ -18,10 +18,10 @@ data "aws_ami" "ec2_base_image" {
 
 #EC2 Inscante =============
 resource "aws_instance" "poc_instance" {
-  ami           = data.aws_ami.ec2_base_image.id
-  instance_type = "t2.micro"
-  #instance_type          = "t2.medium"
-  vpc_security_group_ids = [aws_security_group.poc_concept_sg.id]
+  ami = data.aws_ami.ec2_base_image.id
+  #instance_type = "t2.micro"
+  instance_type          = "t2.medium"
+  vpc_security_group_ids = [aws_security_group.concept-project_sg.id]
   iam_instance_profile   = aws_iam_instance_profile.profile_para_ec2.name # Anexa o perfil
   tags = merge(
     local.common_tags,
@@ -80,7 +80,7 @@ resource "aws_instance" "poc_instance" {
 
 
 # EC2 Security Group =========
-resource "aws_security_group" "poc_concept_sg" {
+resource "aws_security_group" "concept-project_sg" {
   name        = "poc-ssh-http"
   description = "Acesso SSH e HTTP para instancia da POC"
 

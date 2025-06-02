@@ -11,7 +11,7 @@ resource "aws_db_instance" "poc_database" {
   allocated_storage       = 20             # GB (mínimo 20, máximo 20 para Free Tier)
   max_allocated_storage   = 20             # Não permite auto-scaling (para manter no Free Tier)
   storage_type            = "gp2"
-  db_name                 = "pocconcept"
+  db_name                 = "poc"
   username                = "pocapp"
   password                = "poc-${random_id.db_password.hex}"
   parameter_group_name    = aws_db_parameter_group.poc_database.name

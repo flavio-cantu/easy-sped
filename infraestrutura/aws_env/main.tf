@@ -2,8 +2,12 @@ locals {
   # Common tags to be assigned to all resources
   common_tags = {
     type    = "POC",
-    company = "EVOLUÇÃO"
+    company = "EMPRESA"
   }
+}
+
+locals {
+  absolute_path = abspath("${path.module}/../../")
 }
 
 data "aws_region" "current" {

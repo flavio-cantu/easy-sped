@@ -2,14 +2,14 @@ locals {
   # Usa o nome do workspace como sufixo para evitar conflitos
   workspace_suffix = terraform.workspace == "default" ? "" : "${terraform.workspace}"
 
-  client_name = "concept@${local.workspace_suffix}"
+  client_name = "EMPRESA@${local.workspace_suffix}"
   folder      = local.workspace_suffix
 
-  bucket_name = "poc-concept-b4372ec472133e4363fc" # Bucket compartilhado entre workspaces
+  bucket_name = "poc-fb777242a5736c7e6a12" # Bucket compartilhado entre workspaces
 
   common_tags = {
     type      = "POC",
-    company   = "EMPRESA"
+    company   = "EMPRESA-CONTABILIDADE"
     client    = local.client_name
     workspace = terraform.workspace
   }

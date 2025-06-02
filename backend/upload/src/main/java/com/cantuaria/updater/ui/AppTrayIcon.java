@@ -81,7 +81,7 @@ public class AppTrayIcon {
         }
 
         ImageIcon icon = new ImageIcon(imageUrl);
-        trayIcon = new TrayIcon(icon.getImage(), "Evolução", popup);
+        trayIcon = new TrayIcon(icon.getImage(), "Uploader", popup);
         trayIcon.setImageAutoSize(true);
 
         try {

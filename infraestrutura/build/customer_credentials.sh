@@ -16,7 +16,7 @@ BUCKET_NAME=$4
 BUCKET_FOLDER=$5
 
 JAR_PATH=target/cloud-updater-*.jar
-PROJECT_DIR="/workspace/concept-project/backend/upload"
+PROJECT_DIR="$(pwd)/../../backend/upload"
 CONTAINER_NAME="maven-builder-$(date +%s)"
 
 # Validações iniciais
@@ -34,7 +34,7 @@ echo "Executando build Maven no container Docker..."
 docker run --rm \
   --name "$CONTAINER_NAME" \
   -v "$PROJECT_DIR":/app \
-  -v "/workspace/concept-project/m2":/root/.m2 \
+  -v "$(pwd)/../m2":/root/.m2 \
   -w /app \
   jelastic/maven:3.9.5-openjdk-21 \
   mvn clean package -DskipTests

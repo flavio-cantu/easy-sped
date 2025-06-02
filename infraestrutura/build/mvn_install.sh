@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Verifica se os parâmetros necessários foram fornecidos
-if [ -z "$1" ] || [ -z "$2" ] ; then
+if [ -z "$1" ] ; then
   echo "Erro: Parâmetros insuficientes."
   echo "Uso: $0 <diretorio-do-projeto>"
-  echo "Exemplo: $0 meu-bucket-s3 xmlBroker target/*.jar /caminho/para/projeto"
+  echo "Exemplo: $0 /caminho/para/projeto"
   exit 1
 fi
 
@@ -25,7 +25,7 @@ echo "Executando build Maven no container Docker..."
 docker run --rm \
   --name "$CONTAINER_NAME" \
   -v "$PROJECT_DIR":/app \
-  -v "/workspace/concept-project/m2":/root/.m2 \
+  -v "$(pwd)/../m2":/root/.m2 \
   -w /app \
   jelastic/maven:3.9.5-openjdk-21 \
   mvn clean install clean -DskipTests
