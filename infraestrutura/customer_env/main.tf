@@ -9,7 +9,7 @@ locals {
 
   common_tags = {
     type      = "POC",
-    company   = "EVOLUÇÃO"
+    company   = "EMPRESA"
     client    = local.client_name
     workspace = terraform.workspace
   }
