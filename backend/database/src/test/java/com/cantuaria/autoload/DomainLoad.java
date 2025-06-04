@@ -55,7 +55,7 @@ public class DomainLoad implements CommandLineRunner {
 
     private void addAnp() {
         Anp anp = new Anp();
-        anp.setCode("320102001");
+        anp.setSpedCode("320102001");
         anp.setName("Gasolina C Comum");
         anp.setGroup("Gasolinas");
         anpRepository.save(anp);
@@ -63,21 +63,21 @@ public class DomainLoad implements CommandLineRunner {
 
     private void addCest() {
         Cest cest = new Cest();
-        cest.setCode("00");
+        cest.setSpedCode("00");
         cest.setName("Serviço");
         cestRepository.save(cest);
     }
 
     private void addItemGender() {
         Gender gender = new Gender();
-        gender.setCode("27");
+        gender.setSpedCode("27");
         gender.setName("Combustíveis minerais, óleos minerais e produtos de sua destilação; matérias betuminosas; ceras minerais");
         genderRepository.save(gender);
     }
 
     private void addCountry() {
         Country country = new Country();
-        country.setCode("1058");
+        country.setSpedCode("1058");
         country.setName("BRASIL");
         countryRepository.save(country);
     }

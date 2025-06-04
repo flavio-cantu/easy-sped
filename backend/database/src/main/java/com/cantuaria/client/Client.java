@@ -7,12 +7,22 @@ import com.cantuaria.sped.domain.converter.ActivityTypeConverter;
 import com.cantuaria.sped.domain.municipio.Municipality;
 import com.cantuaria.validation.SpedValidation;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * Classe representando os dados do cliente
  */
 @Entity
 @Table(name = "CLI_CLIENTE")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Client {
     public static final String ID = "CLI_ID";
 

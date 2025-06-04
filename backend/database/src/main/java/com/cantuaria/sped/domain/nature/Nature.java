@@ -4,6 +4,11 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * Código de natureza da operação
@@ -11,12 +16,17 @@ import jakarta.persistence.Table;
  * Este registro tem por objetivo codificar os textos das diferentes naturezas da operação/prestações discriminadas nos
  * documentos fiscais. Esta codificação e suas descrições são livremente criadas e mantidas pelo contribuinte.
  * Este registro não se refere ao CFOP.
- *
+ * <p>
  * TODO entidade sem vinculo, mas utiliado no C170
  */
 
 @Entity
 @Table(name = "NAT_NATUREZA")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Nature {
 
     public static final String ID = "NAT_ID";
@@ -27,21 +37,5 @@ public class Nature {
 
     @Column(name = "NAT_DS_NOME", length = 300, nullable = false)
     private String name;
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
 }

@@ -1,6 +1,11 @@
 package com.cantuaria.sped.domain.layout_version;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
@@ -11,6 +16,11 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "LAV_LAYOUT_VERSION")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class LayoutVersion {
     public static final String ID = "LAV_ID";
 
@@ -31,44 +41,4 @@ public class LayoutVersion {
     @Column(name = "LAV_DT_FIM")
     private LocalDate end;
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getSpedCode() {
-        return spedCode;
-    }
-
-    public void setSpedCode(String spedCode) {
-        this.spedCode = spedCode;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
-    }
-
-    public LocalDate getStart() {
-        return start;
-    }
-
-    public void setStart(LocalDate start) {
-        this.start = start;
-    }
-
-    public LocalDate getEnd() {
-        return end;
-    }
-
-    public void setEnd(LocalDate end) {
-        this.end = end;
-    }
 }

@@ -3,9 +3,19 @@ package com.cantuaria.fiscal.nfe;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "IMO_IMPOSTO_ORIGINAL")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Imposto {
     public static final String ID = "IMO_ID";
 
@@ -50,76 +60,4 @@ public class Imposto {
     @JsonIgnore
     private Det det;
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getIcmsOrig() {
-        return icmsOrig;
-    }
-
-    public void setIcmsOrig(String icmsOrig) {
-        this.icmsOrig = icmsOrig;
-    }
-
-    public String getIcmsCST() {
-        return icmsCST;
-    }
-
-    public void setIcmsCST(String icmsCST) {
-        this.icmsCST = icmsCST;
-    }
-
-    public Double getIcmsqBCMonoRet() {
-        return icmsqBCMonoRet;
-    }
-
-    public void setIcmsqBCMonoRet(Double icmsqBCMonoRet) {
-        this.icmsqBCMonoRet = icmsqBCMonoRet;
-    }
-
-    public Double getIcmsadRemICMSRet() {
-        return icmsadRemICMSRet;
-    }
-
-    public void setIcmsadRemICMSRet(Double icmsadRemICMSRet) {
-        this.icmsadRemICMSRet = icmsadRemICMSRet;
-    }
-
-    public Double getIcmsvICMSMonoRet() {
-        return icmsvICMSMonoRet;
-    }
-
-    public void setIcmsvICMSMonoRet(Double icmsvICMSMonoRet) {
-        this.icmsvICMSMonoRet = icmsvICMSMonoRet;
-    }
-
-    public String getPisCST() {
-        return pisCST;
-    }
-
-    public void setPisCST(String pisCST) {
-        this.pisCST = pisCST;
-    }
-
-    public String getConfinsCST() {
-        return confinsCST;
-    }
-
-    public void setConfinsCST(String confinsCST) {
-        this.confinsCST = confinsCST;
-    }
-
-    public Det getDet() {
-        return det;
-    }
-
-    public void setDet(Det det) {
-        this.det = det;
-    }
 }

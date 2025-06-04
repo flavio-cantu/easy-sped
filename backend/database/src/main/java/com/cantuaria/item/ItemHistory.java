@@ -2,6 +2,11 @@ package com.cantuaria.item;
 
 import com.cantuaria.validation.SpedValidation;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
@@ -11,6 +16,11 @@ import java.time.LocalDate;
  */
 @Entity
 @Table(name = "ITH_ITEM_HISTORY")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ItemHistory {
     public static final String ID = "ITH_ID";
 

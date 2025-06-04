@@ -1,6 +1,11 @@
 package com.cantuaria.participant;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
@@ -10,6 +15,11 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Table(name = "PAH_PARTICIPANTE_HISTORY")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ParticipantHistory {
     public static final String ID = "PAH_ID";
 

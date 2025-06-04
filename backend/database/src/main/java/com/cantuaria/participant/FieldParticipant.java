@@ -1,5 +1,13 @@
 package com.cantuaria.participant;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@AllArgsConstructor
 public enum FieldParticipant {
 
     NAME("03"),
@@ -13,13 +21,5 @@ public enum FieldParticipant {
     COMPLEMENT("12"),
     NEIGHBORHOOD("13");
 
-    private String fieldCode;
-
-    FieldParticipant(String fieldCode) {
-        this.fieldCode = fieldCode;
-    }
-
-    public String getFieldCode() {
-        return fieldCode;
-    }
+    private final String fieldCode;
 }

@@ -15,8 +15,11 @@ import java.lang.annotation.Target;
 public @interface SpedEnumValidation {
 
     String[] validation();
+
     Class<? extends EnumSped<?>> enumType();
+
     String label();
+
     String description();
 
 }

@@ -10,15 +10,19 @@ import com.cantuaria.validation.SpedDatabaseValidation;
 import com.cantuaria.validation.SpedEnumValidation;
 import com.cantuaria.validation.SpedValidation;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * Representação do registro 0000 do arquivo de escrituração
- *
+ * <p>
  * Basicamente o registro 0000 trata das informações do cliente
- *
+ * <p>
  * Essa entidade é retratada exatamente como no descriptor e no guia.
  * Para facilitar a rastreabilidade dos campos as colunas de banco serão a referencia.
- *
  */
 @Entity
 @Table(name = "B0R0000_BLOCO_0_REGISTRO_0000")
@@ -35,6 +39,11 @@ import jakarta.persistence.*;
         "REGRA_EXISTE_APURACAO_IPI",
         "REGRA_NAO_EXISTE_APURACAO_IPI"
 }, label = "Identificação", description = "Dados Cadastrais do Informante")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Record0000 {
 
     public static final String REG = "0000";
@@ -47,42 +56,42 @@ public class Record0000 {
 
     //Origem Bookkeeping.layoutVersion
     @SpedDatabaseValidation(validation = "CODIGO_EXISTE_DATABASE", databaseType = LayoutVersionRepository.class,
-    label = "Código da versão do leiaute", description = "Código da versão do leiaute conforme Tabela Versão do Leiaute")
-    @Column(name = "COD_VER",length = 3, nullable = false)
+            label = "Código da versão do leiaute", description = "Código da versão do leiaute conforme Tabela Versão do Leiaute")
+    @Column(name = "COD_VER", length = 3, nullable = false)
     private String codVer;
 
     //Origem Bookkeeping.purpose
     @SpedEnumValidation(validation = "CODIGO_EXISTE_ENUM", enumType = Purpose.class,
             label = "Código da finalidade", description = "Data inicial das informações contidas no arquivo")
-    @Column(name = "COD_FIN",length = 1, nullable = false)
+    @Column(name = "COD_FIN", length = 1, nullable = false)
     private String codFin;
 
     //Origem Bookkeeping.start (Formato: ddmmaaaa)
     @SpedValidation(validation = {"REGRA_DATA_VALIDA_A4E5V1"}, label = "Data inicial",
             description = "Data inicial das informações contidas no arquivo")
-    @Column(name = "DT_INI",length = 8, nullable = false)
+    @Column(name = "DT_INI", length = 8, nullable = false)
     private String dtIni;
 
     //Origem Bookkeeping.end (Formato: ddmmaaaa)
     @SpedValidation(validation = {"REGRA_DATA_VALIDA_A4E5V1"}, label = "Data inicial",
             description = "Data final das informações contidas no arquivo")
-    @Column(name = "DT_FIN",length = 8, nullable = false)
+    @Column(name = "DT_FIN", length = 8, nullable = false)
     private String dtFim;
 
     //Origem Client.businessName OU Client.responsibleName
-    @Column(name = "NOME",length = 100, nullable = false)
+    @Column(name = "NOME", length = 100, nullable = false)
     private String nome;
 
     //Origem Client.cnpj
     @SpedValidation(validation = "REGRA_DIGITO_CNPJ", label = "CNPJ Cliente",
             description = "Número de inscrição da entidade no CNPJ")
-    @Column(name = "CNPJ",length = 14)
+    @Column(name = "CNPJ", length = 14)
     private String cnpj;
 
     //Origem Client.responsibleCpf
     @SpedValidation(validation = "REGRA_DIGITO_CPF", label = "CPF Responsável",
             description = "Número de inscrição da pessoa natural no CPF")
-    @Column(name = "CPF",length = 11)
+    @Column(name = "CPF", length = 11)
     private String cpf;
 
     //Origem Client.uf

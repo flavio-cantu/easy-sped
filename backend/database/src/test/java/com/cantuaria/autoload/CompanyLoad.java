@@ -41,7 +41,7 @@ public class CompanyLoad implements CommandLineRunner {
         company.setNumber("1530");
         company.setComplement("");
         company.setNeighborhood("ZONA INDUSTRIAL");
-        company.setMunicipio(municipality);
+        company.setMunicipality(municipality);
 
         return companyRepository.save(company);
     }

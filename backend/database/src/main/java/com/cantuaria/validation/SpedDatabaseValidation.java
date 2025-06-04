@@ -15,8 +15,11 @@ import java.lang.annotation.Target;
 public @interface SpedDatabaseValidation {
 
     String[] validation();
-    Class<? extends DatabaseSped<?,?>> databaseType();
+
+    Class<? extends DatabaseSped<?, ?>> databaseType();
+
     String label();
+
     String description();
 
 }

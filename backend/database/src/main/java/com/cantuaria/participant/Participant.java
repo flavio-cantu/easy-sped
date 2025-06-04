@@ -4,6 +4,11 @@ import com.cantuaria.sped.domain.country.Country;
 import com.cantuaria.sped.domain.municipio.Municipality;
 import com.cantuaria.validation.SpedValidation;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -12,6 +17,11 @@ import java.util.List;
  */
 @Entity
 @Table(name = "PAR_PARTICIPANTE")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Participant { //TODO alerta de carga!
     public static final String ID = "PAR_ID";
 
@@ -71,6 +81,6 @@ public class Participant { //TODO alerta de carga!
     @Column(name = "PAR_DS_BAIRRO", length = 60, nullable = false)
     private String neighborhood;
 
-    @OneToMany(mappedBy = "participant",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "participant", cascade = CascadeType.ALL)
     private List<ParticipantHistory> histories;
 }

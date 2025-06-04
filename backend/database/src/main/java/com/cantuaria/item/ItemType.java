@@ -1,6 +1,8 @@
 package com.cantuaria.item;
 
-public enum ItemType {
+import com.cantuaria.validation.EnumSped;
+
+public enum ItemType implements EnumSped<String> {
 
     MERCADORIA_REVENDA("00", "Mercadoria para Revenda"),
     MATERIA_PRIMA("01", "Matéria-Prima"),

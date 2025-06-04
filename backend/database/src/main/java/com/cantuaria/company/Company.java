@@ -3,6 +3,11 @@ package com.cantuaria.company;
 import com.cantuaria.sped.domain.municipio.Municipality;
 import com.cantuaria.validation.SpedValidation;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -12,6 +17,11 @@ import java.util.List;
  */
 @Entity
 @Table(name = "EMP_EMPRESA")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Company {
     public static final String ID = "EMP_ID";
 
@@ -51,76 +61,4 @@ public class Company {
     @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
     private List<Accountant> accountants;
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public String getComplement() {
-        return complement;
-    }
-
-    public void setComplement(String complement) {
-        this.complement = complement;
-    }
-
-    public String getNeighborhood() {
-        return neighborhood;
-    }
-
-    public void setNeighborhood(String neighborhood) {
-        this.neighborhood = neighborhood;
-    }
-
-    public Municipality getMunicipio() {
-        return municipality;
-    }
-
-    public void setMunicipio(Municipality municipality) {
-        this.municipality = municipality;
-    }
-
-    public List<Accountant> getAccountants() {
-        return accountants;
-    }
-
-    public void setAccountants(List<Accountant> accountants) {
-        this.accountants = accountants;
-    }
 }

@@ -2,6 +2,11 @@ package com.cantuaria.client;
 
 import com.cantuaria.sped.domain.UF;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * Representação da ocorrencia registro id="0015" do sped
@@ -9,6 +14,11 @@ import jakarta.persistence.*;
  */
 @Entity
 @Table(name = "COS_CONTRIBUINTE_SUBSTITUTO")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class SubstituteTaxpayer {
     public static final String ID = "COS_ID";
 
@@ -17,7 +27,7 @@ public class SubstituteTaxpayer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "COS_CD",length = 2, nullable = false, columnDefinition = "varchar(2)")
+    @Column(name = "COS_CD", length = 2, nullable = false, columnDefinition = "varchar(2)")
     @Enumerated(EnumType.STRING)
     private UF uf;
 
@@ -28,27 +38,4 @@ public class SubstituteTaxpayer {
     @JoinColumn(name = Client.ID, nullable = false)
     private Client client;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public UF getUf() {
-        return uf;
-    }
-
-    public void setUf(UF uf) {
-        this.uf = uf;
-    }
-
-    public String getMunicipalRegistration() {
-        return municipalRegistration;
-    }
-
-    public void setMunicipalRegistration(String municipalRegistration) {
-        this.municipalRegistration = municipalRegistration;
-    }
 }

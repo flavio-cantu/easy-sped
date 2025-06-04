@@ -7,6 +7,11 @@ import com.cantuaria.sped.domain.gender.Gender;
 import com.cantuaria.sped.domain.nature.Nature;
 import com.cantuaria.validation.SpedValidation;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +24,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "ITE_ITEM")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Item {
 
     public static final String ID = "ITE_ID";
@@ -43,7 +53,7 @@ public class Item {
     @Column(name = "ITE_DS", length = 200, nullable = false)
     private String description;
 
-    @Column(name = "ITE_CD_BARRA", length = 60)
+    @Column(name = "ITE_CD_BARRA", length = 20)
     private String barCode;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -81,7 +91,8 @@ public class Item {
     @JoinColumn(name = Cest.ID, nullable = false)
     private Cest cest;
 
-    @OneToMany(mappedBy = "item",cascade = CascadeType.ALL)
+    @Builder.Default
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private List<ItemHistory> histories = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -100,7 +111,7 @@ public class Item {
     @Column(name = "ITE_DS_CODIGO_REPRESENTACAO", length = 20)
     private String representationCode;
 
-
+    @Builder.Default
     @ManyToMany
     @JoinTable(
             name = "INA_ITEM_NATUREZA",
@@ -109,6 +120,7 @@ public class Item {
     )
     private List<Nature> natures = new ArrayList<>();
 
+    @Builder.Default
     @ManyToMany
     @JoinTable(
             name = "IIC_ITEM_INFORMACAO_COMPLEMENTAR",

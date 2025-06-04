@@ -10,7 +10,9 @@ import java.lang.annotation.Target;
 public @interface SpedValidation {
 
     String[] validation();
+
     String label();
+
     String description();
 
 }

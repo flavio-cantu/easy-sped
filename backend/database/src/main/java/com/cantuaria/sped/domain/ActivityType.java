@@ -1,25 +1,20 @@
 package com.cantuaria.sped.domain;
 
 import com.cantuaria.validation.EnumSped;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@AllArgsConstructor
 public enum ActivityType implements EnumSped<Integer> {
 
-    INDUSTRIAL(0,"Industrial ou equiparado a industrial"),
-    OUTRAS(1,"Outras");
+    INDUSTRIAL(0, "Industrial ou equiparado a industrial"),
+    OUTRAS(1, "Outras");
 
-    private Integer code;
-    private String name;
+    private final Integer code;
+    private final String name;
 
-    ActivityType(Integer code, String name) {
-        this.code = code;
-        this.name = name;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public String getName() {
-        return name;
-    }
 }
