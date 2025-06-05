@@ -40,7 +40,7 @@ public class Client {
     //TODO criar regra, deve ter pelomenos um: cnpj ou cpf
     @SpedValidation(validation = "REGRA_DIGITO_CNPJ", label = "CNPJ Cliente",
             description = "Número de inscrição da entidade no CNPJ")
-    @Column(name = "CLI_DS_CNPJ", length = 14, nullable = false)
+    @Column(name = "CLI_DS_CNPJ", length = 14)
     private String cnpj;
 
     @Column(name = "CLI_DS_NOME_RESPONSAVEL", length = 100, nullable = false)
@@ -48,7 +48,7 @@ public class Client {
 
     @SpedValidation(validation = "REGRA_DIGITO_CPF", label = "CPF Responsável",
             description = "Número de inscrição da pessoa natural no CPF")
-    @Column(name = "CLI_DS_CPF", length = 11, nullable = false)
+    @Column(name = "CLI_DS_CPF", length = 11)
     private String responsibleCpf;
 
     @Column(name = "CLI_UF", length = 2, nullable = false, columnDefinition = "varchar(2)")

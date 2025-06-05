@@ -2,10 +2,7 @@ package com.cantuaria.sped.domain;
 
 import com.cantuaria.validation.EnumSped;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
 @AllArgsConstructor

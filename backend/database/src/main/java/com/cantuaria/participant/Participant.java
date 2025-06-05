@@ -81,6 +81,6 @@ public class Participant { //TODO alerta de carga!
     @Column(name = "PAR_DS_BAIRRO", length = 60, nullable = false)
     private String neighborhood;
 
-    @OneToMany(mappedBy = "participant", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "participant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ParticipantHistory> histories;
 }

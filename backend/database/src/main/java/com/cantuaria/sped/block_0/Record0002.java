@@ -1,14 +1,7 @@
 package com.cantuaria.sped.block_0;
 
-import com.cantuaria.sped.domain.ActivityType;
-import com.cantuaria.sped.domain.Profile;
-import com.cantuaria.sped.domain.Purpose;
-import com.cantuaria.sped.domain.UF;
 import com.cantuaria.sped.domain.classification.ClassificationRepository;
-import com.cantuaria.sped.domain.layout_version.LayoutVersionRepository;
-import com.cantuaria.sped.domain.municipio.MunicipalityRepository;
 import com.cantuaria.validation.SpedDatabaseValidation;
-import com.cantuaria.validation.SpedEnumValidation;
 import com.cantuaria.validation.SpedValidation;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

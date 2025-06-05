@@ -9,7 +9,15 @@ import com.cantuaria.sped.domain.municipio.MunicipalityRepository;
 import com.cantuaria.validation.SpedDatabaseValidation;
 import com.cantuaria.validation.SpedEnumValidation;
 import com.cantuaria.validation.SpedValidation;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -64,7 +72,7 @@ public class Record0000 {
     @SpedEnumValidation(validation = "CODIGO_EXISTE_ENUM", enumType = Purpose.class,
             label = "Código da finalidade", description = "Data inicial das informações contidas no arquivo")
     @Column(name = "COD_FIN", length = 1, nullable = false)
-    private String codFin;
+    private Integer codFin;
 
     //Origem Bookkeeping.start (Formato: ddmmaaaa)
     @SpedValidation(validation = {"REGRA_DATA_VALIDA_A4E5V1"}, label = "Data inicial",

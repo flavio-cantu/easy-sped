@@ -1,6 +1,5 @@
 package com.cantuaria.sped.block_0;
 
-import com.cantuaria.sped.domain.classification.ClassificationRepository;
 import com.cantuaria.sped.domain.municipio.MunicipalityRepository;
 import com.cantuaria.validation.SpedDatabaseValidation;
 import com.cantuaria.validation.SpedValidation;

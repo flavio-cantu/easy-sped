@@ -1,6 +1,5 @@
 package com.cantuaria.sped.domain.classification;
 
-import com.cantuaria.sped.domain.layout_version.LayoutVersion;
 import com.cantuaria.validation.DatabaseSped;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

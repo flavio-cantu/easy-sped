@@ -92,7 +92,7 @@ public class Item {
     private Cest cest;
 
     @Builder.Default
-    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ItemHistory> histories = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

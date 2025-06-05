@@ -13,6 +13,7 @@ import com.cantuaria.sped.block_h.BlockH;
 import com.cantuaria.sped.block_k.BlockK;
 import com.cantuaria.sped.domain.Profile;
 import com.cantuaria.sped.domain.Purpose;
+import com.cantuaria.sped.domain.converter.BookkeepingStatusConverter;
 import com.cantuaria.sped.domain.converter.PurposeConverter;
 import com.cantuaria.sped.domain.layout_version.LayoutVersion;
 import com.cantuaria.sped.domain.observation.Observation;
@@ -96,6 +97,13 @@ public class Bookkeeping {
             inverseJoinColumns = @JoinColumn(name = Observation.ID)
     )
     private List<Observation> observations = new ArrayList<>();
+
+    /**
+     * Status de processamento da escrituração
+     */
+    @Column(name = "EDI_CD_STATUS", length = 1, columnDefinition = "varchar(1)")
+    @Convert(converter = BookkeepingStatusConverter.class)
+    private BookkeepingStatus status;
 
     //Blocos da escrituracao =======================================
     //Compilação dos blocos para representar o arquivo EDF que futuramente será enviado a RFB

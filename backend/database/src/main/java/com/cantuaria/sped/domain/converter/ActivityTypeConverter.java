@@ -9,8 +9,11 @@ import java.util.stream.Stream;
 @Converter(autoApply = true)
 public class ActivityTypeConverter implements AttributeConverter<ActivityType, Integer> {
     @Override
-    public Integer convertToDatabaseColumn(ActivityType purpose) {
-        return purpose.getCode();
+    public Integer convertToDatabaseColumn(ActivityType enumerate) {
+        if (enumerate == null) {
+            return null;
+        }
+        return enumerate.getCode();
     }
 
     @Override

@@ -4,6 +4,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.IOException;
@@ -17,11 +18,11 @@ public class XmlResourceReader {
 
 
     static Set<String> codigos = new HashSet<>();
-    static Map<String,Element> mapeamentos = new HashMap<>();
+    static Map<String, Element> mapeamentos = new HashMap<>();
 
     public static void juntarCodigos() throws IOException {
         String s = new String(XmlResourceReader.class.getResourceAsStream("/teste.txt").readAllBytes());
-        String[] split = s.replace("\n","").split("\\|");
+        String[] split = s.replace("\n", "").split("\\|");
 
         for (String string : split) {
             codigos.add(string);
@@ -31,7 +32,6 @@ public class XmlResourceReader {
         codigos.stream().sorted().toList().forEach(
                 s1 -> System.out.println(s1)
         );
-
 
 
     }
@@ -53,10 +53,10 @@ public class XmlResourceReader {
             int total = 0;
             for (String key : mapeamentos.keySet().stream().sorted().toList()) {
                 int qnt = contarTagsCampoDiretas(mapeamentos.get(key));
-                System.out.println(key+"=>"+qnt);
+                System.out.println(key + "=>" + qnt);
                 total += qnt;
             }
-            System.out.println("Total=>"+total);
+            System.out.println("Total=>" + total);
 
             System.exit(0);
         } catch (Exception e) {
@@ -66,6 +66,7 @@ public class XmlResourceReader {
 
     /**
      * Carrega um arquivo XML do diretório resources
+     *
      * @param fileName Nome do arquivo no resources
      * @return Document objeto DOM
      */
@@ -92,6 +93,7 @@ public class XmlResourceReader {
 
     /**
      * Itera por todos os elementos do XML
+     *
      * @param document Documento XML
      */
     public static void iterateXmlElements(Document document) {
@@ -131,8 +133,9 @@ public class XmlResourceReader {
 
     /**
      * Busca elementos por tag name
+     *
      * @param document Documento XML
-     * @param tagName Nome da tag a ser buscada
+     * @param tagName  Nome da tag a ser buscada
      */
     public static void searchElementByTag(Document document, String tagName) {
         System.out.println("\nBuscando elementos com tag: " + tagName);
@@ -146,7 +149,7 @@ public class XmlResourceReader {
                 Element element = (Element) node;
 
                 String id = element.getAttribute("id");
-                if(codigos.contains(id)){
+                if (codigos.contains(id)) {
                     mapeamentos.put(id, element);
                 }
 
@@ -156,6 +159,7 @@ public class XmlResourceReader {
 
     /**
      * Gera o XPath aproximado do elemento
+     *
      * @param element Elemento XML
      * @return String com caminho XPath
      */

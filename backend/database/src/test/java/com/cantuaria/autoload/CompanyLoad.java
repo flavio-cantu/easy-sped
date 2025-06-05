@@ -25,7 +25,7 @@ public class CompanyLoad implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        if(companyRepository.findAll().isEmpty()) {
+        if (companyRepository.findAll().isEmpty()) {
             Company company = addCompanyData();
             addAccountantData(company);
         }
@@ -53,7 +53,7 @@ public class CompanyLoad implements CommandLineRunner {
         accountant.setCrc("DF09969399");
         accountant.setPhone("6188888888");
         accountant.setFax("");
-        accountant.setEmail("email@concept.com");
+        accountant.setEmail("email@comapny.com");
         accountant.setCompany(company);
 
         accountantRepository.save(accountant);
