@@ -7,19 +7,23 @@ import com.cantuaria.bookkeeping.model.ResponseBookkeeping;
 import com.cantuaria.bookkeeping.model.SaveBookkeeping;
 import com.cantuaria.client.Client;
 import com.cantuaria.client.ClientRepository;
+import com.cantuaria.message.GenericMessageProducer;
 import com.cantuaria.sped.Bookkeeping;
 import com.cantuaria.sped.BookkeepingRepository;
+import com.cantuaria.sped.BookkeepingStatus;
 import com.cantuaria.sped.domain.Profile;
 import com.cantuaria.sped.domain.Purpose;
 import com.cantuaria.sped.domain.layout_version.LayoutVersion;
 import com.cantuaria.sped.domain.layout_version.LayoutVersionRepository;
 import com.cantuaria.util.ObjectNotFoundException;
-import org.hibernate.ObjectDeletedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+import static com.cantuaria.message.model.ConsolidateMessage.DESTINATION_QUEUE;
+import static com.cantuaria.message.model.ConsolidateMessage.RequestConsolidate;
 
 
 @Service
@@ -29,10 +33,16 @@ public class BookkeepingService {
     private BookkeepingRepository repository;
 
     @Autowired
+    private BookkeepingValidation validation;
+
+    @Autowired
     private ClientRepository clientRepository;
 
     @Autowired
     private LayoutVersionRepository layoutVersionRepository;
+
+    @Autowired
+    private GenericMessageProducer genericMessageProducer;
 
 
     @Transactional
@@ -69,9 +79,21 @@ public class BookkeepingService {
         return null;
     }
 
+    @Transactional
     public ConsolidateResponseBookkeeping consolidate(Long id) {
-        //parse + validação
-        return null;
+        Bookkeeping bookkeeping = repository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("Escrituração não encontrada"));
+
+        validation.canConsolidate(bookkeeping);
+
+        bookkeeping.setStatus(BookkeepingStatus.PENDING);
+        repository.save(bookkeeping);
+
+        //Solicitação para consolidação assíncrona
+        genericMessageProducer.sendMessage(DESTINATION_QUEUE,
+                new RequestConsolidate(bookkeeping.getId()));
+
+        return new ConsolidateResponseBookkeeping(bookkeeping.getStatus().getCode());
     }
 
     public ConsolidateResponseBookkeeping reConsolidate(Long id) {
@@ -80,6 +102,9 @@ public class BookkeepingService {
 
 
     public ConsolidateResponseBookkeeping searchConsolidateById(Long id) {
-        return null;
+        Bookkeeping bookkeeping = repository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("Escrituração não encontrada"));
+
+        return new ConsolidateResponseBookkeeping(bookkeeping.getStatus().getCode());
     }
 }

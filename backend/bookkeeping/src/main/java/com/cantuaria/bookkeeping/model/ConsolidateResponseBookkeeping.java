@@ -1,4 +1,6 @@
 package com.cantuaria.bookkeeping.model;
 
-public class ConsolidateResponseBookkeeping {
+public record ConsolidateResponseBookkeeping(
+        String currentStatus
+) {
 }

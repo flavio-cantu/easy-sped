@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AppBookkeeping {
 
     public static void main(String[] args) {
-        System.setProperty("spring.profiles.active", "db");
+        //TODO configurar o MQ no kubernetes
+        System.setProperty("spring.profiles.active", "db,mq");
         SpringApplication.run(AppBookkeeping.class, args);
     }
 
