@@ -7,6 +7,10 @@ import com.cantuaria.bookkeeping.model.ResponseBookkeeping;
 import com.cantuaria.bookkeeping.model.SaveBookkeeping;
 import com.cantuaria.client.Client;
 import com.cantuaria.client.ClientRepository;
+import com.cantuaria.company.Accountant;
+import com.cantuaria.company.AccountantRepository;
+import com.cantuaria.company.Company;
+import com.cantuaria.company.CompanyRepository;
 import com.cantuaria.message.GenericMessageProducer;
 import com.cantuaria.sped.Bookkeeping;
 import com.cantuaria.sped.BookkeepingRepository;
@@ -31,18 +35,19 @@ public class BookkeepingService {
 
     @Autowired
     private BookkeepingRepository repository;
-
     @Autowired
     private BookkeepingValidation validation;
 
     @Autowired
     private ClientRepository clientRepository;
-
     @Autowired
     private LayoutVersionRepository layoutVersionRepository;
-
     @Autowired
     private GenericMessageProducer genericMessageProducer;
+    @Autowired
+    private CompanyRepository companyRepository;
+    @Autowired
+    private AccountantRepository accountantRepository;
 
 
     @Transactional
@@ -53,8 +58,16 @@ public class BookkeepingService {
         LayoutVersion layout = layoutVersionRepository.findById(request.layoutVersionId())
                 .orElseThrow(() -> new ObjectNotFoundException("Versão não encontrado"));
 
+        Company company = companyRepository.findById(request.companyId())
+                .orElseThrow(() -> new ObjectNotFoundException("Empresa não encontrada"));
+
+        Accountant accountant = accountantRepository.findById(request.accountantId())
+                .orElseThrow(() -> new ObjectNotFoundException("Contador não encontrado"));
+
         Bookkeeping entity = Bookkeeping.builder()
                 .client(client)
+                .company(company)
+                .accountant(accountant)
                 .start(request.start())
                 .end(request.end())
                 .layoutVersion(layout)

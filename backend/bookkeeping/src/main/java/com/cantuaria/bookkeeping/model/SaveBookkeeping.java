@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 public record SaveBookkeeping(
         Long clientId,
+        Long companyId,
+        Long accountantId,
         LocalDate start,
         LocalDate end,
         Long layoutVersionId,

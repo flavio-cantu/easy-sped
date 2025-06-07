@@ -30,6 +30,8 @@ public class BookkeepingSteps extends GenericSteps {
     public void createBookkeeping() {
         request = new SaveBookkeeping(
                 1L,
+                1L,
+                1L,
                 LocalDate.of(2025, 1, 1),
                 LocalDate.of(2025, 1, 30),
                 1L,

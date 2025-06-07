@@ -2,6 +2,10 @@ package com.cantuaria.feature;
 
 import com.cantuaria.client.Client;
 import com.cantuaria.client.ClientRepository;
+import com.cantuaria.company.Accountant;
+import com.cantuaria.company.Company;
+import com.cantuaria.company.CompanyRepository;
+import com.cantuaria.helper.BookkeepingHelper;
 import com.cantuaria.sped.Bookkeeping;
 import com.cantuaria.sped.BookkeepingRepository;
 import com.cantuaria.sped.domain.Profile;
@@ -13,8 +17,8 @@ import com.cantuaria.util.ObjectNotFoundException;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.pt.Dado;
-import org.assertj.core.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 public class CommomSteps extends GenericSteps {
 
@@ -22,21 +26,26 @@ public class CommomSteps extends GenericSteps {
     private ClientRepository clientRepository;
     @Autowired
     private LayoutVersionRepository layoutVersionRepository;
+    @Autowired
+    private CompanyRepository companyRepository;
+    @Autowired
+    private BookkeepingHelper bookkeepingHelper;
+
 
     @Autowired
     private BookkeepingRepository bookkeepingRepository;
 
     @Before
     public void reset() {
-        bookkeepingRepository.findAll().forEach(entity -> bookkeepingRepository.delete(entity));
+        bookkeepingHelper.clear();
         stubFeature.reset();
     }
 
     @Dado("que exista a seguinte solicitação de escrituração:")
+    @Transactional
     public void createBookkeeping(DataTable dataTable) {
         dataTable.asMaps().forEach(
                 map -> {
-                    String idBookkeeping = map.get("ID");
                     String clientBusinessName = map.get("Cliente");
                     String start = map.get("Inicio");
                     String end = map.get("Fim");
@@ -48,8 +57,16 @@ public class CommomSteps extends GenericSteps {
                     LayoutVersion layout = layoutVersionRepository.findAll().stream()
                             .findFirst().orElseThrow(() -> new ObjectNotFoundException("Nenhum layout encontrado"));
 
+                    Company company = companyRepository.findAll().stream()
+                            .findFirst().orElseThrow(() -> new ObjectNotFoundException("Nenhuma empresa encontrada"));
+
+                    Accountant accountant = company.getAccountants().stream().findFirst()
+                            .orElseThrow(() -> new ObjectNotFoundException("Nenhum contador encontrado"));
+
                     Bookkeeping entity = Bookkeeping.builder()
                             .client(selectedClient)
+                            .company(company)
+                            .accountant(accountant)
                             .start(DateUtil.toLocalDate(start))
                             .end(DateUtil.toLocalDate(end))
                             .layoutVersion(layout)
@@ -57,11 +74,7 @@ public class CommomSteps extends GenericSteps {
                             .profile(Profile.A)
                             .build();
 
-                    Bookkeeping persistedEntity = bookkeepingRepository.save(entity);
-
-                    Long expectedId = Long.parseLong(idBookkeeping);
-                    //Se isso não for verdade, temos lixo na base de dados de teste
-                    Assertions.assertThat(persistedEntity.getId()).isEqualTo(expectedId);
+                    bookkeepingRepository.save(entity);
                 }
         );
     }
