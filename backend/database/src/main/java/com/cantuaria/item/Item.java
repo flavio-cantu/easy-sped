@@ -13,6 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +42,9 @@ public class Item {
     @Column(name = "ITE_CD", length = 60, nullable = false)
     private String itemCode;
 
+    @Column(name = "ITE_DH_CODE", nullable = false)
+    private LocalDateTime lastCodeModification;
+
     //TODO Vincular o item do cadstro ao item da nota
     /*
     cProd é o código do produto no sistema emissor da nota
@@ -52,6 +56,9 @@ public class Item {
 
     @Column(name = "ITE_DS", length = 200, nullable = false)
     private String description;
+
+    @Column(name = "ITE_DH_INICIAL_DESC", nullable = false)
+    private LocalDateTime lastDescriptionModification;
 
     @Column(name = "ITE_CD_BARRA", length = 20)
     private String barCode;
@@ -110,6 +117,7 @@ public class Item {
 
     @Column(name = "ITE_DS_CODIGO_REPRESENTACAO", length = 20)
     private String representationCode;
+
 
     @Builder.Default
     @ManyToMany

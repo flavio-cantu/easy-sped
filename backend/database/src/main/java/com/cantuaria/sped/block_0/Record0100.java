@@ -44,66 +44,66 @@ public class Record0100 {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //Origem Accountant.name
+    //Origem Bookeeping.Accountant.name
     @Column(name = "NOME", length = 60, nullable = false)
     private String nome;
 
-    //Origem Accountant.cpf
+    //Origem Bookeeping.Accountant.cpf
     @SpedValidation(validation = "REGRA_DIGITO_CPF", label = "CPF",
             description = "Número de inscrição do contabilista no CPF")
     @Column(name = "CPF", length = 11, nullable = false)
     private String cpf;
 
-    //Origem Accountant.crc
+    //Origem Bookeeping.Accountant.crc
     @Column(name = "CRC", length = 15, nullable = false)
     private String crc;
 
-    //Origem Company.cnpj
+    //Origem Bookeeping.Company.cnpj
     @SpedValidation(validation = "REGRA_DIGITO_CNPJ", label = "CNPJ Empresa",
             description = "Número de inscrição do escritório de contabilidade no CNPJ")
     @Column(name = "CNPJ", length = 14)
     private String cnpj;
 
-    //Origem Company.cep
+    //Origem Bookeeping.Company.cep
     @Column(name = "CEP", length = 8)
     private String cep;
 
-    //Origem Company.address
+    //Origem Bookeeping.Company.address
     @Column(name = "ENDERECO", length = 60)
     private String endereco;
 
-    //Origem Company.number
+    //Origem Bookeeping.Company.number
     @Column(name = "NUM", length = 10)
     private String num;
 
-    //Origem Company.complement
+    //Origem Bookeeping.Company.complement
     @Column(name = "COMPL", length = 60)
-    private String complement;
+    private String compl;
 
-    //Origem Company.neighborhood
+    //Origem Bookeeping.Company.neighborhood
     @Column(name = "BAIRRO", length = 60)
     private String bairro;
 
-    //Origem Accountant.phone
+    //Origem Bookeeping.Accountant.phone
     @SpedValidation(validation = "REGRA_VALIDA_TELEFONE_FAX", label = "Telefone",
             description = "Número do telefone")
     @Column(name = "FONE", length = 11)
     private String fone;
 
-    //Origem Accountant.fax
+    //Origem Bookeeping.Accountant.fax
     @SpedValidation(validation = "REGRA_VALIDA_TELEFONE_FAX", label = "Fax",
             description = "Número do fax")
     @Column(name = "FAX", length = 11)
     private String fax;
 
-    //Origem Accountant.email
+    //Origem Bookeeping.Accountant.accountantemail
     @SpedValidation(validation = "REGRA_VALIDA_EMAIL_FISCAL", label = "E-mail",
             description = "Endereço do correio eletrônico")
     @Column(name = "EMAIL", length = 60, nullable = false)
     private String email;
 
 
-    //Origem Company.municipality
+    //Origem Bookeeping.Company.municipality
     @SpedDatabaseValidation(validation = "CODIGO_EXISTE_DATABASE", databaseType = MunicipalityRepository.class,
             label = "Codigo do município", description = "Código do município, conforme tabela IBGE")
     @Column(name = "COD_MUN", length = 7, nullable = false)

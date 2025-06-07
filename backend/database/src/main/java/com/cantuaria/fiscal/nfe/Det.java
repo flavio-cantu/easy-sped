@@ -94,10 +94,10 @@ public class Det {
     @JsonProperty("vDesc")
     private Double vDesc;
 
-    @OneToOne(mappedBy = "det", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Comb comb;
 
-    @OneToOne(mappedBy = "det", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Imposto imposto;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

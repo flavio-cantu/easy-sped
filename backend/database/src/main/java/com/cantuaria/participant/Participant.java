@@ -1,5 +1,6 @@
 package com.cantuaria.participant;
 
+import com.cantuaria.client.Client;
 import com.cantuaria.sped.domain.country.Country;
 import com.cantuaria.sped.domain.municipio.Municipality;
 import com.cantuaria.validation.SpedValidation;
@@ -83,4 +84,7 @@ public class Participant { //TODO alerta de carga!
 
     @OneToMany(mappedBy = "participant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ParticipantHistory> histories;
+
+    @ManyToMany(mappedBy = "participants")
+    private List<Client> clients;
 }

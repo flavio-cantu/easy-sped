@@ -32,7 +32,7 @@ public class Block0 {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(mappedBy = "block", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @SpedInnerObject(required = true)
     private Record0000 record0000;
 
@@ -40,15 +40,15 @@ public class Block0 {
     @SpedInnerObject(required = true)
     private Record0001 record0001;
 
-    @OneToOne(mappedBy = "block", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     //Obrigatório na regra REGRA_REGISTRO_OBRIGATORIO_0002
     private Record0002 record0002;
 
-    @OneToOne(mappedBy = "block", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @SpedInnerObject(required = true)
     private Record0005 record0005;
 
-    @OneToOne(mappedBy = "block", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @SpedInnerObject
     //Pode ser obrigatório por regra interna
     private Record0100 record0100;

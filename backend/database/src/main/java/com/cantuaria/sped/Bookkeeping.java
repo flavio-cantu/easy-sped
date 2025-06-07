@@ -1,6 +1,8 @@
 package com.cantuaria.sped;
 
 import com.cantuaria.client.Client;
+import com.cantuaria.company.Accountant;
+import com.cantuaria.company.Company;
 import com.cantuaria.sped.block_0.Block0;
 import com.cantuaria.sped.block_1.Block1;
 import com.cantuaria.sped.block_9.Block9;
@@ -53,6 +55,14 @@ public class Bookkeeping {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = Client.ID, nullable = false)
     private Client client;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = Accountant.ID, nullable = false)
+    private Accountant accountant;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = Company.ID, nullable = false)
+    private Company company;
 
     @SpedValidation(validation = "REGRA_DATA_VALIDA_A4E5V1", label = "Data inicial",
             description = "Data inicial das informações contidas no arquivo")
@@ -108,43 +118,43 @@ public class Bookkeeping {
     //Blocos da escrituracao =======================================
     //Compilação dos blocos para representar o arquivo EDF que futuramente será enviado a RFB
 
-    @OneToOne(mappedBy = "bookkeeping", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @SpedRequired
     private Block0 block0;
 
-    @OneToOne(mappedBy = "bookkeeping", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @SpedRequired
     private BlockB blockb;
 
-    @OneToOne(mappedBy = "bookkeeping", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @SpedRequired
     private BlockC blockC;
 
-    @OneToOne(mappedBy = "bookkeeping", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @SpedRequired
     private BlockD blockD;
 
-    @OneToOne(mappedBy = "bookkeeping", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @SpedRequired
     private BlockE blockE;
 
-    @OneToOne(mappedBy = "bookkeeping", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @SpedRequired
     private BlockG blockG;
 
-    @OneToOne(mappedBy = "bookkeeping", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @SpedRequired
     private BlockH blockH;
 
-    @OneToOne(mappedBy = "bookkeeping", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @SpedRequired
     private BlockK blockK;
 
-    @OneToOne(mappedBy = "bookkeeping", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @SpedRequired
     private Block1 block1;
 
-    @OneToOne(mappedBy = "bookkeeping", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @SpedRequired
     private Block9 block9;
 

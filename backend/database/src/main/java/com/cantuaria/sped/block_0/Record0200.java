@@ -61,7 +61,7 @@ public class Record0200 {
     @Column(name = "COD_BARRA", length = 20)
     private String codBarra;
 
-    //Sem origem, o preenchimento só é obrigatório se o código do item mudar
+    //Esse campo não pode ser preenchido
     @SpedValidation(validation = "REGRA_NAO_INFORMAR_COD_ANT_ITEM_0200", label = "Código anterior do item",
             description = "Código anterior do item com relação à última informação apresentada")
     @Column(name = "COD_ANT_ITEM", length = 60)
@@ -85,6 +85,7 @@ public class Record0200 {
     @Column(name = "COD_NCM", length = 8)
     private String codNCM;
 
+    //Origem Item.exTipiCode
     @Column(name = "EX_IPI", length = 3)
     private String exIPI;
 
@@ -117,12 +118,17 @@ public class Record0200 {
     //Pode ser obrigatório se houver alteraçẽos no item
     private List<Record0205> records0205;
 
-    @OneToOne(mappedBy = "record0200", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "record0200", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @SpedInnerObject
+    //Pode ser obrigatório se houver alteraçẽos no item
+    private List<Record0206> records0206;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @SpedInnerObject
     //Pode ser obrigatório por regra interna
     private Record0220 record0220;
 
-    @OneToOne(mappedBy = "record0200", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @SpedInnerObject
     //Pode ser obrigatório por regra interna
     private Record0221 record0221;

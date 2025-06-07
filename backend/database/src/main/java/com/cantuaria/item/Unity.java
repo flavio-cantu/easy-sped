@@ -16,6 +16,7 @@ import lombok.Setter;
  * O domínio dessa classe deve vir do sistema legado
  * TODO alerta de carga!
  * Atenção! Quando for fazer a carga, garanta unicidade nos valores.
+ * No EFD de exemplo da empresa as unidades estão todas zuadas
  */
 
 @Entity

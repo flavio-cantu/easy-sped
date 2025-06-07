@@ -46,7 +46,7 @@ public class Record0005 {
 
     //Origem Client.cep
     @Column(name = "CEP", length = 8, nullable = false)
-    private Integer cep;
+    private String cep;
 
     //Origem Client.address
     @Column(name = "ENDERECO", length = 60, nullable = false)

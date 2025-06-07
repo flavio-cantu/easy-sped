@@ -10,8 +10,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,10 +40,10 @@ public class NotaFiscal {
     @Column(name = "NFO_DS_PATH")
     private String caminhoArquivo;
 
-    @OneToOne(mappedBy = "notaFiscal", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private IDE ide;
 
-    @OneToOne(mappedBy = "notaFiscal", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Emit emit;
 
     @Column(name = "NFO_DS_AUT_CNPJ")
@@ -53,10 +53,10 @@ public class NotaFiscal {
     @OneToMany(mappedBy = "notaFiscal", cascade = CascadeType.ALL)
     private List<Det> dets = new ArrayList<>();
 
-    @OneToOne(mappedBy = "notaFiscal", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Total total;
 
-    @OneToOne(mappedBy = "notaFiscal", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private InformacaoAdicional informacaoAdicional;
 
 }

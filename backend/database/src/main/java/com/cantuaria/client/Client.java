@@ -1,5 +1,8 @@
 package com.cantuaria.client;
 
+import com.cantuaria.item.Item;
+import com.cantuaria.item.Unity;
+import com.cantuaria.participant.Participant;
 import com.cantuaria.sped.domain.ActivityType;
 import com.cantuaria.sped.domain.UF;
 import com.cantuaria.sped.domain.classification.Classification;
@@ -12,6 +15,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe representando os dados do cliente
@@ -128,6 +134,43 @@ public class Client {
     @JoinColumn(name = Classification.ID, nullable = false)
     private Classification classification;
 
-    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private SubstituteTaxpayer substituteTaxpayer;
+
+    /**
+     * Fornecedores vinculados ao Cliente
+     */
+    @Builder.Default
+    @ManyToMany
+    @JoinTable(
+            name = "CLP_CLIENTE_FORNECEDORES",
+            joinColumns = @JoinColumn(name = Client.ID),
+            inverseJoinColumns = @JoinColumn(name = Participant.ID)
+    )
+    private List<Participant> participants = new ArrayList<>();
+
+    /**
+     * Unidades vinculados ao Cliente
+     */
+    @Builder.Default
+    @ManyToMany
+    @JoinTable(
+            name = "CUM_CLIENTE_UNIDADE_MEDIDA",
+            joinColumns = @JoinColumn(name = Client.ID),
+            inverseJoinColumns = @JoinColumn(name = Unity.ID)
+    )
+    private List<Unity> unities = new ArrayList<>();
+
+    /**
+     * Itens vinculados ao Cliente
+     */
+    @Builder.Default
+    @ManyToMany
+    @JoinTable(
+            name = "CIT_CLIENTE_ITEM",
+            joinColumns = @JoinColumn(name = Client.ID),
+            inverseJoinColumns = @JoinColumn(name = Item.ID)
+    )
+    private List<Item> itens = new ArrayList<>();
+
 }

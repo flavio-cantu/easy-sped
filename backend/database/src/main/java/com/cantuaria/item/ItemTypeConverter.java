@@ -9,6 +9,9 @@ import java.util.stream.Stream;
 public class ItemTypeConverter implements AttributeConverter<ItemType, String> {
     @Override
     public String convertToDatabaseColumn(ItemType enumerated) {
+        if (enumerated == null) {
+            return null;
+        }
         return enumerated.getCode();
     }
 
