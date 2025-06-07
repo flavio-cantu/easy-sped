@@ -53,7 +53,7 @@ public class CompanyLoad implements CommandLineRunner {
         accountant.setCrc("DF09969399");
         accountant.setPhone("6188888888");
         accountant.setFax("");
-        accountant.setEmail("email@comapny.com");
+        accountant.setEmail("email@empresa.com");
         accountant.setCompany(company);
 
         accountantRepository.save(accountant);
